@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robin AI Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#312e81);
+    color:white;
+}
+
+.card{
+    width:90%;
+    max-width:700px;
+    padding:40px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+    box-shadow:0 0 40px rgba(0,255,255,.2);
+    text-align:center;
+}
+
+.live{
+    display:inline-block;
+    padding:10px 20px;
+    border-radius:30px;
+    background:rgba(0,255,150,.15);
+    border:1px solid rgba(0,255,150,.3);
+    margin-bottom:25px;
+}
+
+.name{
+    font-size:4rem;
+    font-weight:bold;
+    background:linear-gradient(90deg,#00ffff,#7c3aed,#ff66cc);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+    margin-top:10px;
+    color:#cbd5e1;
+    font-size:1.1rem;
+}
+
+#greeting{
+    margin:25px 0;
+    font-size:1.4rem;
+    color:#93c5fd;
+}
+
+.clock-box{
+    margin-top:25px;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.05);
+}
+
+#time{
+    font-size:4rem;
+    font-weight:bold;
+    color:#ffffff;
+}
+
+#date{
+    margin-top:15px;
+    font-size:1.3rem;
+    color:#cbd5e1;
+}
+
+.skills{
+    margin-top:25px;
+    line-height:2;
+    color:#94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="live">
+🟢 LIVE SYSTEM
+</div>
+
+<h2>Hello, my name is</h2>
+
+<div class="name">
+Robin
+</div>
+
+<div class="subtitle">
+林筠傑
+</div>
+
+<div id="greeting"></div>
+
+<div class="clock-box">
+<div>CURRENT DATE & TIME</div>
+
+<div id="time"></div>
+
+<div id="date"></div>
+</div>
+
+<div class="skills">
+📡 Telecom Engineer<br>
+☁️ AI • Cloud • Python • GitHub<br>
+📈 VOO • QQQ Long-Term Investor
+</div>
+
+</div>
+
+<script>
+
+function updateClock(){
+
+const now=new Date();
+
+const time=now.toLocaleTimeString('zh-TW',{
+hour12:false
+});
+
+const date=now.toLocaleDateString('zh-TW',{
+year:'numeric',
+month:'long',
+day:'numeric',
+weekday:'long'
+});
+
+document.getElementById('time').innerHTML=time;
+document.getElementById('date').innerHTML=date+" | GMT+8";
+
+}
+
+function updateGreeting(){
+
+const h=new Date().getHours();
+
+let msg="";
+
+if(h>=5 && h<11){
+
+msg="☀️ 早安 Robin！祝您今天充滿活力與好心情";
+
+}
+else if(h<14){
+
+msg="🌤 午安 Robin！記得適時休息與補充水分";
+
+}
+else if(h<18){
+
+msg="🌞 午後愉快 Robin！持續朝夢想前進";
+
+}
+else if(h<23){
+
+msg="🌙 晚安 Robin！感謝今天的努力";
+
+}
+else{
+
+msg="✨ 夜深了 Robin！別忘了休息，健康最重要";
+
+}
+
+document.getElementById('greeting').innerHTML=msg;
+
+}
+
+updateClock();
+updateGreeting();
+
+setInterval(updateClock,1000);
+
+</script>
+
+</body>
+</html>
